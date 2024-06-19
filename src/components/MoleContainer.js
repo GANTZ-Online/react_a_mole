@@ -1,6 +1,6 @@
-import {useState } from 'react';
+import {useState, useEffect } from 'react';
 import EmptySlot from './EmptySlot';
-import Mole from './Mole'
+import Mole from './Mole.js'
 
 
 function MoleContainer(props) {
@@ -10,11 +10,22 @@ function MoleContainer(props) {
         setDisplayMole(false); 
     }
 
-    let showMole = displayMole ? <Mole setScore={props.score} handleClick={handleClick} /> 
-    : <EmptySlot />
+    useEffect(() => {
+        let randSeconds = Math.ceil(Math.random() * 5000)
+        let timer = setTimeout(() => {
+            setDisplayMole(true);
+        }, randSeconds);
+        return () => clearTimeout(timer)
+    }, []);
+
+ 
     return (
-        <div>
-            <displayMole />
+        <div className = "moleContainer">
+            {displayMole? (
+                <Mole setDisplayMole={setDisplayMole} handleClick={handleClick} />
+            ) : (
+                <EmptySlot setDisplayMole={setDisplayMole} />
+            )}
         </div>
     )
 }

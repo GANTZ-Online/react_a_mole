@@ -1,6 +1,8 @@
 import React from 'react'
+import {useEffect} from 'react'
+import moleHillImg from './assets/molehill.png'
 
-function EmptySlot(){
+function EmptySlot(props){
     useEffect(() => {
         // Feel free to adjust this number as you see fit.
         // It is your game to tune!
@@ -14,7 +16,7 @@ function EmptySlot(){
     return (
         <div>
             <img style={{'width': '30vw'}}
-            src={moleHill}/>
+            src={moleHillImg}/>
         </div>
     )
 }
